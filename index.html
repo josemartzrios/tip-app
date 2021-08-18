@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Propina rápida</title>
+</head>
+<body>
+
+    <main id="container">
+        <h1>Propina rápida</h1>
+
+
+        <!-- PRIMERA SECCIÓN -->
+        <section>
+
+            <!-- Escribir total de la cuenta -->
+            <div class="bill">
+                <label for="yourBill">Cuenta</label>
+                <input type="number" placeholder="Tu cuenta" id="yourBill" />
+            </div>
+
+            <!-- Seleccionar propina -->
+            <div>
+                <div class="spaceBetween">
+                    <label for="tipInput">Porcentaje de propina</label>
+                    <span id="tipPercent"></span>
+                </div>
+
+                <!-- Barra de porcentaje propina -->
+                <input type="range"  value="0" id="tipInput" class="range"/>
+            </div>
+
+            <!-- Cuanto dinero será de propina  -->
+            <div class="spaceBetween">
+                <span>Propina</span>
+                <span id="tipValue"></span>
+            </div>
+            <hr>
+            <!-- TOTAL de cuenta más propina -->
+            <div class="spaceBetweenTotal">
+                <span>Total</span>
+                <span id="totalWithTip"></span>
+            </div>
+
+        </section>
+
+        <!-- SEGUNDA SECCIÓN -->
+        <section>
+            <div class="spaceBetween">
+                <label for="">Dividir cuenta</label>
+                <span id="splitValue"></span>
+            </div>
+
+            <div>
+                <input type="range" min="1" max="10" value="1" id="splitInput" class="range"/>
+            </div>
+
+            <div class="spaceBetween">
+                <span>Cuenta por cada uno</span>
+                <span id="billEach"></span>
+            </div>
+
+            <div class="spaceBetween">
+                <span>Propina por cada uno</span>
+                <span id="tipEach"></span>
+            </div>
+
+        </section>
+
+        <p class="myProject">Proyecto de José Martínez Ríos &copy;</p>
+    </main>
+
+    <script>
+
+        
+        function formatMoney(value){
+
+            // REDONDEAR CIFRAS 
+            value = Math.ceil(value * 100) / 100;
+
+            // CIFRAS A DECIMALES
+            value = value.toFixed(2);
+            return "$" + value;
+
+        }
+
+        // FUNCIÓN PERSONA O PERSONAS DEPENDIENDO LOS COMENSALES
+        function formatSplit(value){
+            if(value == "1") return value + " persona";
+            return value + " personas"
+        }
+
+
+        // OBTENER VALOR DEL NUMERO DE CUENTA CON LA FUNCIÓN UPDATE
+        function update(){
+            // PASO LA VARIABLE BILL DE STRING A NUMBER
+           let bill = Number(document.getElementById("yourBill").value);
+           let tipPercent = document.getElementById("tipInput").value;
+           let split = document.getElementById("splitInput").value;
+
+
+            // SACAR EL VALOR (porcentaje) DE LA PROPINA
+           let tipValue = bill * (tipPercent/100);
+           let tipEach = tipValue / split
+           let newBillEach = (bill + tipValue) / split
+
+
+            // PORCENTAJE DE LA PROPINA
+           document.getElementById("tipPercent").innerHTML = tipPercent + "%";
+        
+            // CANTIDAD DE LA PROPINA
+            document.getElementById("tipValue").innerHTML = formatMoney(tipValue); 
+
+            // CANTIDAD TOTAL
+            document.getElementById("totalWithTip").innerHTML = formatMoney(tipValue + bill);
+
+            // NÚMERO DE PERSONAS ENTRE CUENTA
+            document.getElementById("splitValue").innerHTML = formatSplit(split);
+
+            // CUENTA POR CADA PERSONA
+            document.getElementById("billEach").innerHTML = formatMoney(newBillEach);
+
+
+            // PROPINA POR CADA PERSONA
+            document.getElementById("tipEach").innerHTML = formatMoney(tipEach);
+
+        }
+        // PARA QUE LA FUNCIÓN TOME LOS TRES INPUTS O BARRAS DEL MAIN
+        let container = document.getElementById('container');
+        container.addEventListener('input', update);
+
+    </script>
+    
+</body>
+</html>

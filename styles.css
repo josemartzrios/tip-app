@@ -1,0 +1,106 @@
+html{
+    font-size: 20px;
+    color: #444;
+    background: lightyellow;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+main{
+    max-width: 30%;
+    margin: 100px auto;
+    background: linear-gradient(rgb(255, 107, 131), #ffa07a);
+    padding: 10px 5px 15px 5px;
+    border-radius: 20px;
+    box-shadow: 0 2px 2px lightgray;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    margin: 0;
+    padding-bottom: 20px;
+    color: white;
+}
+
+section{
+    background: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 2px lightgray;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+section > div{
+    padding: 15px 0px;
+}
+
+.bill{
+    display: flex;
+}
+
+.bill label{
+    flex: 1;
+    align-self: center;
+}
+
+.bill input{
+    flex: 3;
+}
+
+input[type="number"]{
+    font-family: inherit;
+    background: #f4f4f5;
+    font-size: 13px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 5px 5px 5px;
+    box-shadow: inset 0 2px lightgray;
+}
+
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+.spaceBetweenTotal{
+    font-weight: bolder;
+}
+
+.range{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #eee;
+    margin-top: 15px;
+    border-radius: 15px;
+    outline-color: #ffa07a;
+}
+
+.range::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffa07a;
+    cursor: pointer;
+}
+
+.range::-moz-range-thumb{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffa07a;
+    cursor: pointer;
+    border: none;
+}
+
+.range::-moz-focus-outer{
+    border: 0px;
+}
+
+.myProject{
+    text-align: center;
+}
